@@ -8,11 +8,12 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
-    "bulma": "^0.9.3",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-service": "~4.5.0",
+    "bulma": "^0.9.3",
     "sass": "^1.35.2",
     "sass-loader": "^10.2.0",
     "vue-template-compiler": "^2.6.11"

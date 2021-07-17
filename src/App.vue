@@ -1,20 +1,33 @@
 <template>
-  <div id="app" class="container">
+  <div id="app" class="container is-max-desktop">
+    <div class="box">
+       <location-chooser class="colum is-half-mobile" />
     <div class="colums is-mobile">
-      <weather-card class="colum is-one-third is-offset-x" />
-      <location-chooser class="colum is-one-third" />
+      <today-weather-card class="card"/>
+     
+      <div class="title">Forecast for 5 days</div>
+      <daily-forecast-card class='block' />
+    </div>
     </div>
   </div>
 </template>
 
 <script>
+import DailyForecastCard from "./components/DailyForecastCard.vue";
 import LocationChooser from "./components/LocationChooser.vue";
-import WeatherCard from "./components/TodayWeatherCard.vue";
+import TodayWeatherCard from './components/TodayWeatherCard.vue';
 export default {
   name: "App",
-  components: { WeatherCard, LocationChooser },
+  components: { LocationChooser, DailyForecastCard, TodayWeatherCard },
 };
 </script>
 
-<style>
+<style lang="scss">
+html{
+  background-color: #eeeeee;
+
+}
+  .container{
+    background-color: hsl(206, 70%, 96%)
+  }
 </style>
