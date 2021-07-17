@@ -1,12 +1,14 @@
 <template>
-  <div>
+  <div class=" column is-three-fifths">
     <input type="text" class="input" placeholder="Enter your city" />
     <button class="button is-primary is-light">search</button>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name:'LocationChooser'
+};
 </script>
 
 <style>
