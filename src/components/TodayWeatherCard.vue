@@ -1,10 +1,11 @@
 <template>
   <div class="card">
-      <p class="title">Moscow</p>
+    <p class="title">Moscow</p>
     <div class="card-content is-mobile">
       <div class="title">
-        <i class="fas fa-bolt"></i>
+        <span class="icon"> <i class="fas fa-bolt"></i></span>
         <i class="fas fa-plus">9</i>
+        <i class="fas fa-sun"></i>
       </div>
     </div>
   </div>
@@ -12,7 +13,8 @@
 
 <script>
 export default {
-  name:'TodayWeatherCard'
+  name: "TodayWeatherCard",
+  props: {},
 };
 </script>
 
