@@ -3,7 +3,6 @@
     <div class="box">
       <loader />
       <location-chooser
-        @get-weather="getForecast"
         class="colum is-half-mobile"
       />
       <div class="colums is-mobile">
@@ -26,7 +25,6 @@ export default {
   name: "App",
   components: { LocationChooser, DailyForecastCard, TodayWeatherCard, Loader },
   computed: { ...mapMutations([]) },
-  methods: mapActions(["getForecast"]),
 };
 </script>
 

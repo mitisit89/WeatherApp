@@ -1,22 +1,30 @@
 import Vue from "vue";
 import Vuex from "vuex";
+const API_key = "a70e5ca8827286c01fa0d2fd3272043d";
+
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   actions: {
-    async getForecast(context, params_for_weahter) {
-      let lat = params_for_weahter.lat;
-      let lon = params_for_weahter.lon;
-      const headers = { "Content-Type": "application/json;charset=UTF-8" };
-      const API_key = "a70e5ca8827286c01fa0d2fd3272043d";
+    async getLocation(context, location_name) {
+      console.log(location_name.coordinates);
+      const headers = {"Content-Type": "application/json;charset=UTF-8"};
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,daily&units=metric&appid=${API_key}`,
-        {
-          method: "GET",
-          headers: headers,
-        }
-      );
+        `http://api.openweathermap.org/geo/1.0/direct?q=${location_name.coordinates}&limit=5&appid=${API_key}`);
+      const geo_codes = await response.json()
+      console.log(geo_codes);
+      context.commit('getForecast',geo_codes)
+    },
+    async getForecast(context) {
+      console.log(context);
+      //const geo_codes=await context.dispatch("getLocation")
+      let lat = geo_codes.lat;
+      let lon = geo_codes.lon;
+      const headers = {"Content-Type": "application/json;charset=UTF-8"};
+
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,daily&units=metric&appid=${API_key}`);
       const weather = await response.json();
       console.log(weather);
       context.commit("update", weather);
@@ -24,7 +32,7 @@ const store = new Vuex.Store({
   },
   mutations: {
     update(state, weather) {
-      state.forefast = weather;
+      state.forecast = weather;
     },
   },
   state: {
@@ -32,7 +40,7 @@ const store = new Vuex.Store({
   },
   getters: {
     getWeather(state) {
-      return state.forefast;
+      return state.forecast;
     },
   },
 });

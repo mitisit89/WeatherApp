@@ -1,37 +1,39 @@
 <template>
   <div class="block">
-    <div class="field">
+    <form class="field" @submit.prevent="Locator">
       <input
         v-model="userLocation"
-        @submit.prevent="onSubmint"
+      
         type="text"
         class="input is-rounded"
-        placeholder="Enter your city"
+        placeholder="Enter your city and country"
       />
       <button class="button is-primary is-dark">
         <span class="icon"><i class="fa fa-search"></i></span>
       </button>
-    </div>
+    </form>
   </div>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   name: "LocationChooser",
   data() {
-    return {
+    return { 
       userLocation: "",
     };
   },
-  methods: {
-    onSubmint() {
-      sendUserLocation = {
-        usrLocation: this.userLocation,
-      };
-      this.$emit("get-weather", usrLocation);
-    },
-  },
-};
+  methods :{
+    ...mapActions(["getLocation"]),
+    Locator(){
+      this.getLocation({
+        coordinates:this.userLocation
+      });
+    }
+
+  }
+}
 </script>
 
 <style>
