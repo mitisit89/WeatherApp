@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-const API_key = "a70e5ca8827286c01fa0d2fd3272043d";
+const API_key = "";
 
 Vue.use(Vuex);
 
